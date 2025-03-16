@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import os  # ✅ إصلاح الخطأ بإضافة الاستيراد
 
 app = FastAPI()
 
@@ -28,3 +29,8 @@ def my_info():
             "hobbies": ["البرمجة", "القراءة", "السباحة"]
         }
     }
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8080))  # ✅ استخدم PORT من البيئة أو 8080 افتراضيًا
+    uvicorn.run(app, host="0.0.0.0", port=port)
